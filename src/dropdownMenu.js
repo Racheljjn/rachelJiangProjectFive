@@ -1,23 +1,43 @@
 const dropdownMenu = [
   {
-    restaurant: 'EAT BKK',
-  picture: 'https://www.eatbkk.ca/wp-content/uploads/2018/09/42194716_10156607850029076_3483010978595995648_n.jpg'
+    cuisine: "Thai",
+    restaurant: "EAT BKK",
+    picture:
+      "https://www.eatbkk.ca/wp-content/uploads/2018/09/42194716_10156607850029076_3483010978595995648_n.jpg",
+    alt:"a Thai restaurant with colorful chairs and tables"
   },
   {
-    restaurant: 'the Best Wonton',
+    // for demonstration purpose
+    cuisine: "Thai",
+    restaurant: "Good Thai",
     picture:
-      'https://images.pexels.com/photos/955137/pexels-photo-955137.jpeg?cs=srgb&dl=pexels-buenosia-carol-955137.jpg&fm=jpg'
+      "https://www.eatbkk.ca/wp-content/uploads/2018/09/42194716_10156607850029076_3483010978595995648_n.jpg",
+    alt: "a Thai restaurant with colorful chairs and tables"
   },
   {
-    restaurant: 'Amazing Pasta',
+    cuisine: "Chinese",
+    restaurant: "Dragon Pearl",
     picture:
-      'https://images.pexels.com/photos/546945/pexels-photo-546945.jpeg?cs=srgb&dl=pexels-maurijn-pach-546945.jpg&fm=jpg'
-  },
-  {
-    restaurant: 'Indian Taste',
-    picture:
-      'https://images.pexels.com/photos/958546/pexels-photo-958546.jpeg?cs=srgb&dl=pexels-chan-walrus-958546.jpg&fm=jpg'
-  }
-]
+      "https://www.dragonpearlbuffet.com/wp-content/uploads/2014/03/long-table.jpg",
+    alt:"traditional Chinese style restaurant with red decorations"
 
-export default dropdownMenu
+
+  },
+  {
+    cuisine: "Italian",
+    restaurant: "Luci Restaurant",
+
+    picture:
+      "https://i.pinimg.com/originals/9f/51/7f/9f517f58e7444f2eda191bfeea06af47.jpg",
+    alt:"Italian style restaurant with dark light"
+  },
+  {
+    cuisine: "Indian",
+    restaurant: "Tich Indian",
+    picture:
+      "https://torontolife.com/wp-content/uploads/2015/03/tich-toronto-restaurants-02.jpg",
+    alt:"fine dining - Indian style restaurant"
+  },
+];
+
+export default dropdownMenu;

@@ -1,0 +1,4 @@
+(Header.js) is for header 'Reviews' on the page
+(Selection.js) is for two dropdown menus: first level menu is for cuisine selection{Thai, Chinese, Italian, Indian}, once the user selected cuisine, the selections inside of second level menu would be updated with the recommended restaurant(s) for that cuisine. 
+(Display.js) is: after user selected both cuisine and restaurant, the restaurant name and image would be listed on the page.
+
