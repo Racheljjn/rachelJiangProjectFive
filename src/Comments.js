@@ -10,9 +10,10 @@ class Comments extends Component {
       user: {
         name: "",
         input: "",
+        restaurant: "",
       },
-      showForm: false,
-      restaurant: "",
+      showForm: false
+      
     };
   }
 
@@ -20,7 +21,7 @@ class Comments extends Component {
     e.preventDefault();
     const restaurant = userChoice[0].restaurant;
     this.setState({ showForm: true });
-    this.setState({ restaurant: restaurant });
+    this.setState({ user: { ...this.state.user, restaurant: restaurant} });
   };
 
   componentDidMount() {
@@ -37,6 +38,7 @@ class Comments extends Component {
           user: {
             name: data[userName].name,
             input: data[userName].input,
+            restaurant:data[userName].restaurant
           },
         };
         userComments.push(allItems);
@@ -56,11 +58,12 @@ class Comments extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
+
     const dbRef = firebase.database().ref();
 
     dbRef.push(this.state.user);
 
-    this.setState({ user: { name: "", input: "" } });
+    this.setState({ user: { name: "", input: "",restaurant:"" } });
   };
 
   deleteComment = (id) => {
@@ -80,10 +83,11 @@ class Comments extends Component {
           {/* <div><label htmlFor="name" className="sr-only">
             name
           </label> */}
+          
           <div>
           <input
             id="name"
-            placeholder="restaurant..."
+            placeholder="username..."
             value={this.state.user.name}
             onChange={this.userChoice}
           />
@@ -111,7 +115,8 @@ class Comments extends Component {
           {this.state.comments.map((piece) => {
             return (
               <li key={piece.id}>
-                <p>{piece.user.name}</p>
+                <h2><span>{piece.user.restaurant}</span></h2>
+                <p>ID: {piece.user.name}</p>
                 <p>{piece.user.input}</p>
 
                 <div className="btn">

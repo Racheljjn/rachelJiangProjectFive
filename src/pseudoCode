@@ -1,4 +1,4 @@
 (Header.js) is for header 'Reviews' on the page
 (Selection.js) is for two dropdown menus: first level menu is for cuisine selection{Thai, Chinese, Italian, Indian}, once the user selected cuisine, the selections inside of second level menu would be updated with the recommended restaurant(s) for that cuisine. 
-(Comments.js):user types comments and restaurant name
+(Comments.js):user types comments and user name, the restaurant selected will be automatically updated in the list
 

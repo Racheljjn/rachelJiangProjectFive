@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import "./App.css";
 import Header from "./Header";
 import Comments from "./Comments";
+import Footer from './Footer';
 
 class App extends Component {
-  constructor() {
-    super();
+  
     
-  }
+  
 
   render() {
     return (
@@ -21,7 +21,8 @@ class App extends Component {
             </span>
           </h1>
         </Header>
-        <Comments/>      
+        <Comments/>
+        <Footer footer="created by Rachel Jiang 2020"/>      
       </div>
     );
   }
