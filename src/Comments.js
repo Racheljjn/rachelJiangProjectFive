@@ -7,20 +7,26 @@ class Comments extends Component {
     super(props);
     this.state = {
       comments: [],
-      userInput: "",
+      user: {
+        name: "",
+        input: "",
+      },
       showForm: false,
+      restaurant: "",
     };
   }
 
   displayResult = (e, userChoice) => {
     e.preventDefault();
-    const restaurantName = userChoice[0].restaurant;
+    const restaurant = userChoice[0].restaurant;
     this.setState({ showForm: true });
-    
+    this.setState({ restaurant: restaurant });
   };
 
   componentDidMount() {
+    // pull data from firebase
     const dbRef = firebase.database().ref();
+    console.log(dbRef);
     dbRef.on("value", (snapshot) => {
       const data = snapshot.val();
       const userComments = [];
@@ -28,26 +34,33 @@ class Comments extends Component {
       for (let userName in data) {
         const allItems = {
           id: userName,
-          comment: data[userName],
+          user: {
+            name: data[userName].name,
+            input: data[userName].input,
+          },
         };
         userComments.push(allItems);
+        console.log(allItems);
       }
 
       this.setState({ comments: userComments });
     });
   }
 
+  userChoice = (e) => {
+    this.setState({ user: { ...this.state.user, name: e.target.value } });
+  };
   handleChange = (e) => {
-    this.setState({
-      userInput: e.target.value,
-    });
+    this.setState({ user: { ...this.state.user, input: e.target.value } });
   };
 
   handleClick = (e) => {
     e.preventDefault();
     const dbRef = firebase.database().ref();
-    dbRef.push(this.state.userInput);
-    this.setState({ userInput: "" });
+
+    dbRef.push(this.state.user);
+
+    this.setState({ user: { name: "", input: "" } });
   };
 
   deleteComment = (id) => {
@@ -59,20 +72,31 @@ class Comments extends Component {
     return (
       // get user's comments
       <section className="userInput">
-
         <Selection displayResult={this.displayResult} />
         <form
           action="submit"
           style={{ display: this.state.showForm ? "block" : "none" }}
         >
-          <label htmlFor="comments" className="sr-only">
+          {/* <div><label htmlFor="name" className="sr-only">
+            name
+          </label> */}
+          <div>
+          <input
+            id="name"
+            placeholder="restaurant..."
+            value={this.state.user.name}
+            onChange={this.userChoice}
+          />
+          </div>
+          {/* <label htmlFor="comments" className="sr-only">
             comments
-          </label>
+          </label> */}
+
           <textarea
             id="comments"
             rows="5"
             cols="40"
-            value={this.state.userInput}
+            value={this.state.user.input}
             placeholder="say something!"
             onChange={this.handleChange}
             required
@@ -84,14 +108,16 @@ class Comments extends Component {
         </form>
         <ul className="listItem">
           {/* map through each comment inside of comments array */}
-          {this.state.comments.map((comment) => {
+          {this.state.comments.map((piece) => {
             return (
-              <li key={comment.id}>
-                <p>{comment.comment}</p>
-                <div>
+              <li key={piece.id}>
+                <p>{piece.user.name}</p>
+                <p>{piece.user.input}</p>
+
+                <div className="btn">
                   <button
                     onClick={() => {
-                      this.deleteComment(comment.id);
+                      this.deleteComment(piece.id);
                     }}
                   >
                     Delete

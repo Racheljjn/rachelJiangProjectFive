@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import dropdownMenu from "./dropdownMenu.js";
-import Display from './Display'
-import Comments from "./Comments.js";
+
 class Selection extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +14,6 @@ class Selection extends Component {
   handleChange = (e) => {
     this.setState({ userSelection: e.target.value }, () => {
       const selection = dropdownMenu.filter((item) => {
-        
         return item.cuisine === this.state.userSelection;
       });
       this.setState({ selectedItem: selection }, () => {
@@ -30,7 +28,7 @@ class Selection extends Component {
     return (
       // create a dropdown menu for cuisines(by region)
 
-      <main>
+      <main className="selection">
         <label htmlFor="cuisines">Choose a cuisine: </label>
         <select
           id="cuisines"
@@ -53,18 +51,18 @@ class Selection extends Component {
           <option value="">Choose...</option>
 
           {this.state.selectedItem.map((item) => {
-
             return (
               <option key={item.id} value={item.restaurant}>
                 {item.restaurant}
               </option>
-              
             );
           })}
         </select>
-        <button onClick={(e) => this.props.displayResult(e, selectedItem)}>
-          write a review
-        </button>
+        <div>
+          <button onClick={(e) => this.props.displayResult(e, selectedItem)}>
+            write a review
+          </button>
+        </div>
       </main>
     );
   }
